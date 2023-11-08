@@ -17,37 +17,37 @@ import java.util.List;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
-//@Configuration
-//@EnableWebSecurity
+@Configuration
+@EnableWebSecurity
 public class SecurityConfig {
-    //    @Bean
-    //    InMemoryUserDetailsManager users() {
-    //        return new InMemoryUserDetailsManager(
-    //                User.withUsername("dvega")
-    //                        .password("{noop}password")
-    //                        .roles("USER")
-    //                        .build()
-    //        );
-    //    }
-    //
-    //    @Bean
-    //    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    //        return http
-    //                .cors(Customizer.withDefaults()) // by default uses a Bean by the name of corsConfigurationSource
-    //                .authorizeRequests(auth -> auth
-    //                        .anyRequest().authenticated())
-    //                .httpBasic(Customizer.withDefaults())
-    //                .build();
-    //    }
-    //
-    //    @Bean
-    //    CorsConfigurationSource corsConfigurationSource() {
-    //        CorsConfiguration configuration = new CorsConfiguration();
-    //        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
-    //        configuration.setAllowedMethods(Arrays.asList("GET"));
-    //        configuration.setAllowedHeaders(List.of("Authorization"));
-    //        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    //        source.registerCorsConfiguration("/**", configuration);
-    //        return source;
-    //    }
+//        @Bean
+//        InMemoryUserDetailsManager users() {
+//            return new InMemoryUserDetailsManager(
+//                    User.withUsername("admin")
+//                            .password("password")
+//                            .roles("USER")
+//                            .build()
+//            );
+//        }
+//
+//        @Bean
+//        SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//            return http
+//                    .cors(Customizer.withDefaults()) // by default uses a Bean by the name of corsConfigurationSource
+//                    .authorizeRequests(auth -> auth
+//                            .anyRequest().authenticated())
+//                    .httpBasic(Customizer.withDefaults())
+//                    .build();
+//        }
+//
+//        @Bean
+//        CorsConfigurationSource corsConfigurationSource() {
+//            CorsConfiguration configuration = new CorsConfiguration();
+//            configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+//            configuration.setAllowedMethods(Arrays.asList("GET"));
+//            configuration.setAllowedHeaders(List.of("Authorization"));
+//            UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//            source.registerCorsConfiguration("/**", configuration);
+//            return source;
+//        }
 }
