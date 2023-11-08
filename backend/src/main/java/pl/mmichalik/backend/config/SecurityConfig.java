@@ -11,6 +11,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,17 +21,8 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-//        @Bean
-//        InMemoryUserDetailsManager users() {
-//            return new InMemoryUserDetailsManager(
-//                    User.withUsername("admin")
-//                            .password("password")
-//                            .roles("USER")
-//                            .build()
-//            );
-//        }
-//
-//        @Bean
+
+    //        @Bean
 //        SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 //            return http
 //                    .cors(Customizer.withDefaults()) // by default uses a Bean by the name of corsConfigurationSource
