@@ -1,63 +1,27 @@
 package pl.mmichalik.backend.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import pl.mmichalik.backend.models.User;
-import pl.mmichalik.backend.repository.UserRepository;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-
-@RestController
-@RequestMapping("/api/user")
+@Service
 public class UserService {
 
-    @Autowired
-    UserRepository userRepository;
+    private final JdbcUserDetailsManager userDetailsManager;
+
+
 
     @Autowired
-    ObjectMapper objectMapper;
-
-    @GetMapping("")
-    public ResponseEntity getUsers() throws JsonProcessingException {
-        List<User> users = userRepository.findAll();
-        return ResponseEntity.ok(objectMapper.writeValueAsString(users));
+    public UserService(JdbcUserDetailsManager userDetailsManager) {
+        this.userDetailsManager = userDetailsManager;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity getUserById(@PathVariable Long id) {
-        Optional<User> user = userRepository.findById(id);
-
-        if (user.isPresent()) {
-            return ResponseEntity.ok(user.get());
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
+    public void addUser(String username, String password) {
+        userDetailsManager.createUser(User.withUsername(username)
+                //.password(passwordEncoder.encode(password))
+                .roles("USER")
+                .build());
     }
-
-    @PostMapping("")
-    public ResponseEntity createUser(@RequestBody User user) {
-        List<User> userFromDb = userRepository.findByUsername(user.getUsername());
-
-        if (!userFromDb.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).build();
-        }
-
-        return ResponseEntity.ok("createUser");
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity deleteUserById() {
-        return ResponseEntity.ok("deleteUserById");
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity updateUserById() {
-        return ResponseEntity.ok("updateUserById");
-    }
-
 }
