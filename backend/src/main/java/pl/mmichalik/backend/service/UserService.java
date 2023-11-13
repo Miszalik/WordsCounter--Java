@@ -9,19 +9,4 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    private final JdbcUserDetailsManager userDetailsManager;
-
-
-
-    @Autowired
-    public UserService(JdbcUserDetailsManager userDetailsManager) {
-        this.userDetailsManager = userDetailsManager;
-    }
-
-    public void addUser(String username, String password) {
-        userDetailsManager.createUser(User.withUsername(username)
-                //.password(passwordEncoder.encode(password))
-                .roles("USER")
-                .build());
-    }
 }
