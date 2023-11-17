@@ -5,6 +5,7 @@ const API_URL = process.env.REACT_APP_API_URL;
 const register = (username, email, password) => {
     return axios.post(API_URL + "/auth/signup", {
         username,
+        email,
         password,
     });
 };
