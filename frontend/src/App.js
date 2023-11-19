@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
+import "./style/App.css";
 
 import Login from "./components/Login";
 import Register from "./components/Register";
