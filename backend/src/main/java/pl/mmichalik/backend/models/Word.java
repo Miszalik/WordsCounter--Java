@@ -24,8 +24,7 @@ public class Word {
     @Size(max = 30)
     private String wordName;
 
-    @NotBlank
-    private Date creationDate;
+    private Date creationDate = new Date(System.currentTimeMillis());
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "word_to_user", joinColumns = @JoinColumn(name = "word_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
