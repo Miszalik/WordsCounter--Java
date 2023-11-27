@@ -21,10 +21,15 @@ const Home = () => {
         );
     }, []);
 
+    console.log(content);
+
     return (
         <div className="container">
             <header className="jumbotron">
-                <h3>{content}</h3>
+                <h2>Zagramy w grę?</h2>
+                <p>
+                   Comming soon...
+                </p>
             </header>
         </div>
     );
