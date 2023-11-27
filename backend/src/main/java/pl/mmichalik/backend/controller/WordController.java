@@ -55,23 +55,35 @@ public class WordController {
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
-    public ResponseEntity<Word> updateWord(@PathVariable("id") Long id, Word word) {
-        boolean isEmpty = this.wordService.update(id, word);
+    public ResponseEntity<Word> updateWord(@PathVariable("id") Long id,@RequestBody Word word) {
+        try {
+            boolean isEmpty = this.wordService.update(id, word);
 
-        if (!isEmpty)
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            if (!isEmpty)
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
-        return new ResponseEntity<>(word, HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            // Zaloguj wyjątek dla debugowania
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<HttpStatus> deleteWord(@PathVariable("id") Long id) {
-        boolean isDeleted = this.wordService.delete(id);
+        try {
+            boolean isDeleted = this.wordService.delete(id);
 
-        if (!isDeleted)
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            if (!isDeleted)
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            // Zaloguj wyjątek dla debugowania
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

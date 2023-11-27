@@ -38,11 +38,16 @@ public class WordServiceImpl implements WordService {
     @Override
     public boolean update(Long id, Word word) {
         Optional<Word> existingWord = wordRepository.findById(id);
-        if (existingWord.isEmpty())
-            return false;
+        if (existingWord.isPresent()) {
+            Word updatedWord = existingWord.get();
+            updatedWord.setWordName(word.getWordName());
+            updatedWord.setWordCount(word.getWordCount());
+            wordRepository.save(updatedWord);
+            return true;
+        }
 
         wordRepository.save(word);
-        return true;
+        return false;
     }
 
     @Override
